@@ -32,7 +32,6 @@ export class AuthService {
                const hash = await argon.hash(password)
                createdUser = await this.userService.create({ username: usernameGen, email, hash, displayName }, tx);
                if (createdUser === undefined) throw new BadGateway("Failed to create user in the database")
-
           })
           const token = await this.generateToken({ email: createdUser.email, username: createdUser.username, sub: createdUser.id })
           return successResponse({ id: createdUser.id, email: createdUser.email, token })
@@ -43,7 +42,8 @@ export class AuthService {
           if (!password || !email) throw new BadRequest("Email or password is required")
           let user: UserSchema
           user = await this.userService.getUserBy({ email: email })
-          if (!user || !this.comparePassword(user.hash, password)) throw new BadRequest(`Incorrect username,email or password`)
+          if (!user) throw new BadRequest(`Incorrect email or password`)
+          if (!this.comparePassword(user.hash, password)) throw new BadRequest(`Incorrect email or password`)
           const token = await this.generateToken({ email: user.email, username: user.username, sub: user.id })
           return successResponse({ id: user.id, email: user.email, token })
      }

@@ -8,6 +8,14 @@ WORKDIR /nest-cloudinary
 COPY package*.json ./
 COPY . .
 
+#biến môi trường
+ENV TIGRIS_URI=api.preview.tigrisdata.cloud
+ENV TIGRIS_PROJECT=nest-tern
+ENV TIGRIS_CLIENT_ID=tid_UUPzrUJLFBtMGtPXQldeBIlepQRTqy
+ENV TIGRIS_CLIENT_SECRET=tsec_Fv3k9_16f7soSadZjogvh4HoZBHdkcheFDxH-CoM+SZQ5gHQFa
+ENV TIGRIS_DB_BRANCH=main
+
+ENV PORT_SERVER=5050
 # Cài đặt các gói phụ thuộc
 RUN yarn
 
