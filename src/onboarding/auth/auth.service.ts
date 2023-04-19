@@ -43,7 +43,8 @@ export class AuthService {
           let user: UserSchema
           user = await this.userService.getUserBy({ email: email })
           if (!user) throw new BadRequest(`Incorrect email or password`)
-          if (!this.comparePassword(user.hash, password)) throw new BadRequest(`Incorrect email or password`)
+          const compare = await this.comparePassword(user.hash, password)
+          if (!compare) throw new BadRequest(`Incorrect email or password`)
           const token = await this.generateToken({ email: user.email, username: user.username, sub: user.id })
           return successResponse({ id: user.id, email: user.email, token })
      }
