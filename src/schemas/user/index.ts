@@ -15,14 +15,14 @@ export class UserSchema {
 
      @SearchField()
      @Field()
-     username: string;
+     username!: string;
 
      @Field()
      hash: string;
 
      @SearchField()
      @Field()
-     email: string;
+     email!: string;
 
      @SearchField()
      @Field()

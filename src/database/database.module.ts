@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TigrisService } from './tigrisdata/tigris.provider';
+import { TigrisService } from './tigrisdata/tigris.service';
 
 @Module({
      imports: [],

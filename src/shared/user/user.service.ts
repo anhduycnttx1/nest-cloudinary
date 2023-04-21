@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Collection, Session, LogicalFilter } from '@tigrisdata/core';
 import { BadGateway } from 'src/exception/http-exception';
 import { UserSchema } from 'src/schemas/user';
-import { TigrisService } from 'src/database/tigrisdata/tigris.provider';
+import { TigrisService } from 'src/database/tigrisdata/tigris.service';
 type FilterUserOption = {
      email?: string,
      id?: string,
