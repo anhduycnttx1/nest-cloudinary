@@ -27,6 +27,15 @@ export class UserService {
           }, tx)
           return result
      }
+
+     async updateUserBy(filter: FilterUserOption, fields: any, tx?: Session): Promise<any> {
+          const result = await this.userCollection.updateOne({
+               filter: filter,
+               fields: fields
+          }, tx)
+          return result
+     }
+
      async create(data: UserSchema, tx?: Session): Promise<UserSchema> {
           try {
                return await this.userCollection.insertOne(data, tx)
