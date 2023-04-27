@@ -1,0 +1,36 @@
+version: '3.1'
+services:
+  app:
+    image: node:18
+    command: sh -c "yarn && yarn start"
+    ports:
+      - 5000:5000
+    working_dir: /nest-tigris
+    volumes:
+      - ./:/nest-tigris
+    environment:
+      TIGRIS_URI: api.preview.tigrisdata.cloud
+      TIGRIS_PROJECT: nest-tern
+      TIGRIS_CLIENT_ID: tid_UUPzrUJLFBtMGtPXQldeBIlepQRTqy
+      TIGRIS_CLIENT_SECRET: tsec_Fv3k9_16f7soSadZjogvh4HoZBHdkcheFDxH-CoM+SZQ5gHQFa
+      TIGRIS_DB_BRANCH: main
+      JWT_SECRET_AT: domi-app-at
+      JWT_SECRET_RT: domi-app-rt
+      PORT_SERVER: 5000
+      POSTGRES_USER: master
+      POSTGRES_PASSWORD: 2Sc4f&BzBAt1
+  db:
+    image: postgres:15
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: db_app
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local

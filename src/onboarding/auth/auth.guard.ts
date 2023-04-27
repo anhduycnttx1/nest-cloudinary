@@ -3,7 +3,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Unauthorized } from 'src/exception/http-exception';
 
 @Injectable()
-export class AtAuthGuard extends AuthGuard('jwt-at') {
+export class JwtAuthGuard extends AuthGuard('jwt-at') {
      canActivate(context: ExecutionContext) {
           return super.canActivate(context);
      }
